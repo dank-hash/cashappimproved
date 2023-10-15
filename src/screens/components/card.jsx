@@ -1,9 +1,10 @@
 import React from 'react'
 import './card.css'
 
-function Card() {
+
+function Card(props) {
   return (
-    <div className='card'>card</div>
+    <div className='card'><img className='image' src={props.image} /></div>
   )
 }
 
