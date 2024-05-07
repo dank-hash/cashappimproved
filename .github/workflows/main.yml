@@ -9,7 +9,7 @@
     code-signing-identity: 
     # Team id
     team-id: 
-    # Workspace path
+    # Workspace pathy
     workspace-path: # optional, default is 
     # Choose app-store, ad-hoc, package, enterprise, development, or developer-id
     export-method: # optional, default is app-store
