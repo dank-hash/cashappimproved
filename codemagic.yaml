@@ -6,8 +6,7 @@ workflows:
     scripts:
       - name: CD
         script: |
-          ls
-          cd ../
+          ls 
       - name: Build
         script: |
           npm run build
