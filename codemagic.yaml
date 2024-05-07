@@ -4,10 +4,6 @@ workflows:
     max_build_duration: 120
     instance_type: mac_mini_m1
     scripts:
-      - name: Install npm dependencies
-        script: |
-          npm install
-          npm install create-react-app ./cashappimproved/
           
       - name: Build
         script: |
