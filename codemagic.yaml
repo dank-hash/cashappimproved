@@ -1,1 +1,33 @@
+name: Build Workflow
+on:
+  push:
+    branches:
+      - main
 
+jobs:
+  build:
+    runs-on: macos-latest
+    
+
+    - name: Install Node.js
+      run: |
+        brew update
+        brew install node
+
+    - name: Install NPM
+      run: npm install -g npm@latest
+      
+    - name: Install Create React App
+      run: npm install -g create-react-app
+
+    - name: Install Project Dependencies
+      run: npm install
+
+    - name: Update stupid shit
+      run: npx update-browserslist-db@latest
+
+    - name: Build
+      run: npm run build
+
+    - name: Deploy
+      run: npm run deploy
