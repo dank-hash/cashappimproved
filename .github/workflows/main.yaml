@@ -23,8 +23,8 @@ jobs:
     - name: Browser shit
       run: npx browserslist@latest --update-db
 
-    - name: react-native-build-ios
-      uses: AustinMcGuinn/react-native-build-ios@v1.0.0
+    - name: Trigger React Native iOS Build
+      run: npx react-native run-ios
 
     - name: Create Artifacts
       run: npm run create-artifacts
