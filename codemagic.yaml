@@ -1,49 +1,45 @@
+
 workflows:
-name: Build Workflow
-on:
-  push:
-    branches:
-      - main
-      
-jobs:
-  build:
-    runs-on: macos-latest
-    
-    steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
+  build-deploy:
+    jobs:
+      build:
+        runs-on: macos-latest
 
-    - name: Install Node.js
-      run: |
-        brew update
-        brew install node
+        steps:
+          - name: Checkout Repository
+            uses: actions/checkout@v2
 
-    - name: Install NPM
-      run: npm install -g npm@latest
-      
-    - name: Install Create React App
-      run: npm install -g create-react-app
+          - name: Install Node.js
+            run: |
+              brew update
+              brew install node
 
-    - name: Install Project Dependencies
-      run: npm install
+          - name: Install NPM
+            run: npm install -g npm@latest
 
-    - name: Update stupid shit
-      run: npx update-browserslist-db@latest
+          - name: Install Create React App
+            run: npm install -g create-react-app
 
-    - name: Check Missing Dependencies
-      run: |
-        MISSING_DEPS=$(npm ls --parseable --depth=0 | grep node_modules | cut -d/ -f4)
-        echo "Missing dependencies: $MISSING_DEPS"
-        if [ -n "$MISSING_DEPS" ]; then npm install "$MISSING_DEPS"; fi
+          - name: Install Project Dependencies
+            run: npm install
 
-    - name: Build
-      run: npm run build
+          - name: Update stupid shit
+            run: npx update-browserslist-db@latest
 
-    - name: Cache Build Artifacts
-      uses: actions/cache@v2
-      with:
-        path: <path-to-build-artifacts> # Replace with the path to your iOS build artifacts
-        key: ${{ runner.os }}-build-${{ hashFiles('**/*.xcodeproj') }}
+          - name: Check Missing Dependencies
+            run: |
+              MISSING_DEPS=$(npm ls --parseable --depth=0 | grep node_modules | cut -d/ -f4)
+              echo "Missing dependencies: $MISSING_DEPS"
+              if [ -n "$MISSING_DEPS" ]; then npm install "$MISSING_DEPS"; fi
 
-    - name: Deploy
-      run: npm run deploy
+          - name: Build
+            run: npm run build
+
+          - name: Cache Build Artifacts
+            uses: actions/cache@v2
+            with:
+              path: <path-to-build-artifacts> # Replace with the path to your iOS build artifacts
+              key: ${{ runner.os }}-build-${{ hashFiles('**/*.xcodeproj') }}
+
+          - name: Deploy
+            run: npm run deploy
