@@ -17,17 +17,20 @@ jobs:
       with:
         node-version: 14
 
-    - name: Install Dependencies
+    - name: Install NPM
+      run: npm install -g npm@latest
+
+    - name: Install Project Dependencies
       run: npm install
 
-    - name: Browser shit
-      run: npx browserslist@latest --update-db
+    - name: Build iOS App
+      run: npm run build:ios
 
-    - name: Trigger React Native iOS Build
-      run: npx react-native run-ios
-
-    - name: Create Artifacts
-      run: npm run create-artifacts
+    - name: Cache Build Artifacts
+      uses: actions/cache@v2
+      with:
+        path: <path-to-build-artifacts> # Replace with the path to your iOS build artifacts
+        key: ${{ runner.os }}-build-${{ hashFiles('**/*.xcodeproj') }}
 
     - name: Deploy
       run: npm run deploy
