@@ -1,7 +1,6 @@
 
 workflows:
   build-deploy:
-      build:
         runs-on: macos-latest
 
         steps:
