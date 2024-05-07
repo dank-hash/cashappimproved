@@ -23,8 +23,11 @@ jobs:
     - name: Install Project Dependencies
       run: npm install
 
-    - name: Build iOS App
-      run: npm run build:ios
+    - name: Start build iOS App
+      run: npm run start
+
+    - name: Build
+      run: npm run build
 
     - name: Cache Build Artifacts
       uses: actions/cache@v2
