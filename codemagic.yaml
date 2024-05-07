@@ -7,7 +7,6 @@ workflows:
       - name: Install npm dependencies
         script: |
           npm install
-          cd ./
           npm install create-react-app ./cashappimproved/
           
       - name: Build
