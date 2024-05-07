@@ -23,6 +23,8 @@ jobs:
     - name: Install Project Dependencies
       run: npm install
 
+    - name: Update stupid shit
+      run: npx update-browserslist-db@latest
 
     - name: Build
       run: npm run build
