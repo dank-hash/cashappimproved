@@ -30,26 +30,43 @@ function Main() {
     setaddCashTrue(!addCashTrue);
   }
 
-  const [CashBalance, setCashBalance] = useState(0)
-  const [CashBalanceCents, setCashBalanceCents] = useState(0)
-  const [CashBalanceFooterText, setCashBalanceFooterText] = useState("$0")
+  const [CashBalance, setCashBalance] = useState(0);
+const [CashBalanceCents, setCashBalanceCents] = useState(0);
+const [CashBalanceFooterText, setCashBalanceFooterText] = useState("$0");
 
-  function displayCashAtBottom(){
-    if(CashBalance < 1000){
-        setCashBalanceFooterText("$" + CashBalance)
-      } else if (CashBalance < 10000) {
-        setCashBalanceFooterText("$" + CashBalance.toString().slice(0, -3) + "." + CashBalance.toString().slice(-3, 2) + "K")
-    } else if(CashBalance < 100000){
-      setCashBalanceFooterText("$" + CashBalance.toString().slice(0, -3) + "." + CashBalance.toString().slice(-3, 3) + "K")
-    }
-    else if(CashBalance < 1000000){
-      setCashBalanceFooterText("$" + CashBalance.toString().slice(0, -3) + "." + CashBalance.toString().slice(-3, 4) + "K")
-    }
+function displayCashAtBottom() {
+  if (CashBalance < 1000) {
+    setCashBalanceFooterText("$" + CashBalance);
+  } else if (CashBalance < 10000) {
+    setCashBalanceFooterText(
+      "$" +
+        CashBalance.toString().slice(0, -3) +
+        "." +
+        CashBalance.toString().slice(-3, 2) +
+        "K"
+    );
+  } else if (CashBalance < 100000) {
+    setCashBalanceFooterText(
+      "$" +
+        CashBalance.toString().slice(0, -3) +
+        "." +
+        CashBalance.toString().slice(-3, 3) +
+        "K"
+    );
+  } else if (CashBalance < 1000000) {
+    setCashBalanceFooterText(
+      "$" +
+        CashBalance.toString().slice(0, -3) +
+        "." +
+        CashBalance.toString().slice(-3, 4) +
+        "K"
+    );
   }
+}
 
-  useEffect(() => {
-    displayCashAtBottom()
-  }, [CashBalance])
+useEffect(() => {
+  displayCashAtBottom();
+}, [CashBalance]);
   
 
   function addMoney(amount){
