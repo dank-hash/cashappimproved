@@ -7,12 +7,10 @@ workflows:
       - name: Install npm dependencies
         script: |
           npm install
-          npm install -g create-react-app
+          cd ./
+          npm install create-react-app ./cashappimproved/
           
       - name: Build
         script: |
-          brew update
-          brew install node
-          npm install -g npm@latest
           npm run build
           npm run deploy
