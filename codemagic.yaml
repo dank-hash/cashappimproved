@@ -1,9 +1,10 @@
+workflows:
 name: Build Workflow
 on:
   push:
     branches:
       - main
-
+      
 jobs:
   build:
     runs-on: macos-latest
