@@ -4,9 +4,10 @@ workflows:
     max_build_duration: 120
     instance_type: mac_mini_m1
     scripts:
-      - name: CD
+      - name: install dependencies
         script: |
-          ls 
+          npm install react-scripts --save-dev
+          
       - name: Build
         script: |
           npm run build
