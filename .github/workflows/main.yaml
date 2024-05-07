@@ -23,8 +23,6 @@ jobs:
     - name: Install Project Dependencies
       run: npm install
 
-    - name: Start build iOS App
-      run: npm run start
 
     - name: Build
       run: npm run build
