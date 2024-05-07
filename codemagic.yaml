@@ -8,6 +8,9 @@ jobs:
   build:
     runs-on: macos-latest
     
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
 
     - name: Install Node.js
       run: |
@@ -26,8 +29,20 @@ jobs:
     - name: Update stupid shit
       run: npx update-browserslist-db@latest
 
+    - name: Check Missing Dependencies
+      run: |
+        MISSING_DEPS=$(npm ls --parseable --depth=0 | grep node_modules | cut -d/ -f4)
+        echo "Missing dependencies: $MISSING_DEPS"
+        if [ -n "$MISSING_DEPS" ]; then npm install "$MISSING_DEPS"; fi
+
     - name: Build
       run: npm run build
+
+    - name: Cache Build Artifacts
+      uses: actions/cache@v2
+      with:
+        path: <path-to-build-artifacts> # Replace with the path to your iOS build artifacts
+        key: ${{ runner.os }}-build-${{ hashFiles('**/*.xcodeproj') }}
 
     - name: Deploy
       run: npm run deploy
