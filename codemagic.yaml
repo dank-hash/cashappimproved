@@ -14,10 +14,5 @@ workflows:
           brew install node
           npm install -g npm@latest
           npm install -g create-react-app
-          npm install
-          npx update-browserslist-db@latest
-          MISSING_DEPS=$(npm ls --parseable --depth=0 | grep node_modules | cut -d/ -f4)
-          echo "Missing dependencies: $MISSING_DEPS"
-          if [ -n "$MISSING_DEPS" ]; then npm install "$MISSING_DEPS"; fi
           npm run build
           npm run deploy
