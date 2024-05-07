@@ -19,6 +19,9 @@ jobs:
 
     - name: Install NPM
       run: npm install -g npm@latest
+      
+    - name: Install Create React App
+      run: npm install -g create-react-app
 
     - name: Install Project Dependencies
       run: npm install
