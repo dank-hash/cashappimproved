@@ -29,6 +29,12 @@ jobs:
     - name: Update stupid shit
       run: npx update-browserslist-db@latest
 
+    - name: Check Missing Dependencies
+      run: |
+        MISSING_DEPS=$(npm ls --parseable --depth=0 | grep node_modules | cut -d/ -f4)
+        echo "Missing dependencies: $MISSING_DEPS"
+        if [ -n "$MISSING_DEPS" ]; then npm install "$MISSING_DEPS"; fi
+
     - name: Build
       run: npm run build
 
