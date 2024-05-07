@@ -3,10 +3,7 @@ workflows:
   build-deploy:
       instance_type: mac_mini_m1
 
-        steps:
-          - name: Checkout Repository
-            uses: actions/checkout@v2
-
+        scripts:
           - name: Install Node.js
             run: |
               brew update
