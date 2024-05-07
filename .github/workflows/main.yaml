@@ -27,9 +27,9 @@ jobs:
 
     - name: Check Missing Dependencies
       run: |
-        MISSING_DEPS=$(npm ls --parseable --depth=0 | awk -F/ '/node_modules/ {print $NF}' | grep -vE 'react-scripts|react|react-dom')
-        echo "Missing dependencies: $MISSING_DEPS"
-        if [ -n "$MISSING_DEPS" ]; then npm install "$MISSING_DEPS"; fi
+        MISSING_DEPS=$(npm ls --parseable --depth=0 | awk -F/ '/node_modules/ {print $NF}' | grep -vE 'react-scripts|react|react-dom' || true)
+        if [ -n "$MISSING_DEPS" ]; then echo "Missing dependencies: $MISSING_DEPS"; fi
+        npm install $MISSING_DEPS
 
     - name: Build App
       run: npm run build
