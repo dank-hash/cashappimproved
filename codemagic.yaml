@@ -6,8 +6,8 @@ workflows:
     scripts:
       - name: install dependencies
         script: |
-          npm install react-scripts --save-dev
+          npm install 
           
       - name: Build
         script: |
-          npm run eject
+          npm run test
