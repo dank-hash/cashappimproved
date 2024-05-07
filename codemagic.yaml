@@ -1,32 +1,32 @@
 workflows:
   build-deploy:
-        instance_type: mac_mini_m1
-        scripts:
-          - name: Install Node.js
-            run: |
-              brew update
-              brew install node
+    instance_type: mac_mini_m1
+    scripts:
+      - name: Install Node.js
+        run: |
+          brew update
+          brew install node
 
-          - name: Install NPM
-            run: npm install -g npm@latest
+      - name: Install NPM
+        run: npm install -g npm@latest
 
-          - name: Install Create React App
-            run: npm install -g create-react-app
+      - name: Install Create React App
+        run: npm install -g create-react-app
 
-          - name: Install Project Dependencies
-            run: npm install
+      - name: Install Project Dependencies
+        run: npm install
 
-          - name: Update stupid shit
-            run: npx update-browserslist-db@latest
+      - name: Update stupid shit
+        run: npx update-browserslist-db@latest
 
-          - name: Check Missing Dependencies
-            run: |
-              MISSING_DEPS=$(npm ls --parseable --depth=0 | grep node_modules | cut -d/ -f4)
-              echo "Missing dependencies: $MISSING_DEPS"
-              if [ -n "$MISSING_DEPS" ]; then npm install "$MISSING_DEPS"; fi
+      - name: Check Missing Dependencies
+        run: |
+          MISSING_DEPS=$(npm ls --parseable --depth=0 | grep node_modules | cut -d/ -f4)
+          echo "Missing dependencies: $MISSING_DEPS"
+          if [ -n "$MISSING_DEPS" ]; then npm install "$MISSING_DEPS"; fi
 
-          - name: Build
-            run: npm run build
+      - name: Build
+        run: npm run build
 
-          - name: Deploy
-            run: npm run deploy
+      - name: Deploy
+        run: npm run deploy
