@@ -10,43 +10,46 @@ import MoneySelector from './components/moneyselect'
 import pfp from '../icons/finalpfp.png'
 
 function Main() {
-  const [CashBalance, setCashBalance] = useState(0);
-  const [CashBalanceCents, setCashBalanceCents] = useState(0);
-  const [CashBalanceFooterText, setCashBalanceFooterText] = useState("$0");
+  const open = useSpring({
+    from: { y: 500 },
+    to: { y: 0 },
+  })
 
-  function displayCashAtBottom() {
-    if (CashBalance < 1000) {
-      setCashBalanceFooterText("$" + CashBalance);
-    } else if (CashBalance < 10000) {
-      setCashBalanceFooterText(
-        "$" +
-          CashBalance.toString().slice(0, -3) +
-          "." +
-          CashBalance.toString().slice(-3, 2) +
-          "K"
-      );
-    } else if (CashBalance < 100000) {
-      setCashBalanceFooterText(
-        "$" +
-          CashBalance.toString().slice(0, -3) +
-          "." +
-          CashBalance.toString().slice(-3, 3) +
-          "K"
-      );
-    } else if (CashBalance < 1000000) {
-      setCashBalanceFooterText(
-        "$" +
-          CashBalance.toString().slice(0, -3) +
-          "." +
-          CashBalance.toString().slice(-3, 4) +
-          "K"
-      );
+  const close = useSpring({
+    from: { y: 0 },
+    to: { y: 500 },
+  })
+
+  let [addCashTrue, setaddCashTrue] = useState(false)
+  let [addCash, setAddCash] = useState("")
+  if(addCashTrue){
+    addCash = "90%"
+  }
+
+  function addCashModal(){
+    setaddCashTrue(!addCashTrue);
+  }
+
+  const [CashBalance, setCashBalance] = useState(0)
+  const [CashBalanceCents, setCashBalanceCents] = useState(0)
+  const [CashBalanceFooterText, setCashBalanceFooterText] = useState("$0")
+
+  function displayCashAtBottom(){
+    if(CashBalance < 1000){
+        setCashBalanceFooterText("$" + CashBalance)
+      } else if (CashBalance < 10000) {
+        setCashBalanceFooterText("$" + CashBalance.toString().slice(0, -3) + "." + CashBalance.toString().slice(-3, 2) + "K")
+    } else if(CashBalance < 100000){
+      setCashBalanceFooterText("$" + CashBalance.toString().slice(0, -3) + "." + CashBalance.toString().slice(-3, 3) + "K")
+    }
+    else if(CashBalance < 1000000){
+      setCashBalanceFooterText("$" + CashBalance.toString().slice(0, -3) + "." + CashBalance.toString().slice(-3, 4) + "K")
     }
   }
 
   useEffect(() => {
-    displayCashAtBottom();
-  }, [CashBalance, displayCashAtBottom]);
+    displayCashAtBottom()
+  }, [CashBalance])
   
 
   function addMoney(amount){
