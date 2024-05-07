@@ -19,6 +19,7 @@ jobs:
 
     - name: Install Dependencies
       run: npm install
-
+          
     - name: Build App
+      uses: AustinMcGuinn/react-native-build-ios@v1.0.0
       run: npx react-native build
