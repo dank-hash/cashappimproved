@@ -1,8 +1,6 @@
-
 workflows:
   build-deploy:
-      instance_type: mac_mini_m1
-
+        instance_type: mac_mini_m1
         scripts:
           - name: Install Node.js
             run: |
@@ -29,12 +27,6 @@ workflows:
 
           - name: Build
             run: npm run build
-
-          - name: Cache Build Artifacts
-            uses: actions/cache@v2
-            with:
-              path: <path-to-build-artifacts> # Replace with the path to your iOS build artifacts
-              key: ${{ runner.os }}-build-${{ hashFiles('**/*.xcodeproj') }}
 
           - name: Deploy
             run: npm run deploy
