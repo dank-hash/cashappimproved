@@ -20,6 +20,9 @@ jobs:
     - name: Install Dependencies
       run: npm install
 
+    - name: Update NPM
+      run: update npm
+
     - name: Browser shit
       run: npx update-browserslist-db@latest
 
