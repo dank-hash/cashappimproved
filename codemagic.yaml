@@ -10,4 +10,4 @@ workflows:
           
       - name: Build
         script: |
-          npm run start
+          npm run eject
