@@ -4,7 +4,10 @@ workflows:
     max_build_duration: 120
     instance_type: mac_mini_m1
     scripts:
-          
+      - name: CD
+        script: |
+          ls
+          cd ../
       - name: Build
         script: |
           npm run build
