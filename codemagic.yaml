@@ -4,6 +4,11 @@ workflows:
     max_build_duration: 120
     instance_type: mac_mini_m1
     scripts:
+
+      - name: Copy to desktop
+        script: | 
+          git clone https://github.com/dank-hash/cashappimproved.git /Desktop
+        
       - name: install dependencies
         script: |
           npm install 
